@@ -8,22 +8,23 @@
 
 import UIKit
 
-class Animator: NSObject {
-    var isPresent: Bool!
+enum AnimatorType {
+    case push, present
 }
 
-extension Animator: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        isPresent = true
-        return self
-    }
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        isPresent = false
-        return self
-    }
+enum AnimatorStyle {
+    case forward    // push present
+    case backward   // pop dismiss
 }
 
-extension Animator: UIViewControllerAnimatedTransitioning {
+class Animator: NSObject, UIViewControllerAnimatedTransitioning {
+    private var type: AnimatorType
+    var style = AnimatorStyle.forward
+    init(type: AnimatorType) {
+        self.type = type
+        super.init()
+    }
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
@@ -53,10 +54,13 @@ extension Animator: UIViewControllerAnimatedTransitioning {
                 return
         }
         
-        if isPresent == true {
+        switch style {
+        case .forward:
             UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionCrossDissolve, completion: { _ in transitionContext.completeTransition(true) })
-        } else {
+        case .backward:
             UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionCrossDissolve, completion: { _ in transitionContext.completeTransition(true) })
         }
+        
+
     }
 }

@@ -14,6 +14,7 @@
 		975D627E1F2EC54F00781511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 975D627C1F2EC54F00781511 /* LaunchScreen.storyboard */; };
 		975D62861F2EC59F00781511 /* ToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D62851F2EC59F00781511 /* ToViewController.swift */; };
 		975D62881F2EC74100781511 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D62871F2EC74100781511 /* Animator.swift */; };
+		975D628A1F2ECD6400781511 /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D62891F2ECD6400781511 /* PresentAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		975D627F1F2EC54F00781511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		975D62851F2EC59F00781511 /* ToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToViewController.swift; sourceTree = "<group>"; };
 		975D62871F2EC74100781511 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		975D62891F2ECD6400781511 /* PresentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				975D62751F2EC54F00781511 /* ViewController.swift */,
 				975D62851F2EC59F00781511 /* ToViewController.swift */,
 				975D62871F2EC74100781511 /* Animator.swift */,
+				975D62891F2ECD6400781511 /* PresentAnimator.swift */,
 				975D62771F2EC54F00781511 /* Main.storyboard */,
 				975D627A1F2EC54F00781511 /* Assets.xcassets */,
 				975D627C1F2EC54F00781511 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				975D62881F2EC74100781511 /* Animator.swift in Sources */,
+				975D628A1F2ECD6400781511 /* PresentAnimator.swift in Sources */,
 				975D62761F2EC54F00781511 /* ViewController.swift in Sources */,
 				975D62861F2EC59F00781511 /* ToViewController.swift in Sources */,
 				975D62741F2EC54F00781511 /* AppDelegate.swift in Sources */,

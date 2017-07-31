@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let animator = Animator()
+    let animator = PresentAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
