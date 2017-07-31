@@ -17,8 +17,8 @@ class ToViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        _ = navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
+//        dismiss(animated: true, completion: nil)
     }
 
 }

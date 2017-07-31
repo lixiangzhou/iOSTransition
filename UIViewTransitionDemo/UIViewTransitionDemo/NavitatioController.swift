@@ -15,7 +15,7 @@ class NavitatioController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        delegate = navDelegate
+        delegate = navDelegate
     }
 
 }
