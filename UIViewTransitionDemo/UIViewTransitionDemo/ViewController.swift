@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let animator = PresentAnimator()
+    let animator = PushAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +19,7 @@ class ViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let toVC = ToViewController()
-        toVC.transitioningDelegate = animator
-        toVC.modalPresentationStyle = .custom
-        present(toVC, animated: true, completion: nil)
+        navigationController?.pushViewController(ToViewController(), animated: true)
     }
 
 }
