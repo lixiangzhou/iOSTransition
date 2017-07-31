@@ -64,15 +64,15 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         
         guard let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to) else {
-                transitionContext.completeTransition(true)
+                transitionContext.completeTransition(false)
                 return
         }
         
         switch style {
         case .forward:
-            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromLeft, completion: { _ in transitionContext.completeTransition(true) })
+            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromLeft, completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
         case .backward:
-            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromRight, completion: { _ in transitionContext.completeTransition(true) })
+            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromRight, completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
         }
     }
 }
