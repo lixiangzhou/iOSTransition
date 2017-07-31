@@ -10,12 +10,12 @@ import UIKit
 
 class NavitatioController: UINavigationController {
 
-    let navDelegate = PushAnimator()
+    let navDelegate = Animator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate = navDelegate
+//        delegate = navDelegate
     }
 
 }

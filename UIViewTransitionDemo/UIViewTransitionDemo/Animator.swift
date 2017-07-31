@@ -8,23 +8,37 @@
 
 import UIKit
 
-enum AnimatorType {
-    case push, present
-}
-
 enum AnimatorStyle {
     case forward    // push present
     case backward   // pop dismiss
 }
 
-class Animator: NSObject, UIViewControllerAnimatedTransitioning {
-    private var type: AnimatorType
-    var style = AnimatorStyle.forward
-    init(type: AnimatorType) {
-        self.type = type
-        super.init()
+class Animator: NSObject {
+    fileprivate var style = AnimatorStyle.forward
+}
+
+// MARK: - present代理 UIViewControllerTransitioningDelegate
+extension Animator: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        style = .forward
+        return self
     }
-    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        style = .backward
+        return self
+    }
+}
+
+// MARK: - push代理 UINavigationControllerDelegate
+extension Animator: UINavigationControllerDelegate {
+    @objc(navigationController:animationControllerForOperation:fromViewController:toViewController:) func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        style = (operation == .push) ? .forward : .backward
+        return self
+    }
+}
+
+// MARK: - 执行动画 UIViewControllerAnimatedTransitioning
+extension Animator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
@@ -56,11 +70,9 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         
         switch style {
         case .forward:
-            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionCrossDissolve, completion: { _ in transitionContext.completeTransition(true) })
+            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromLeft, completion: { _ in transitionContext.completeTransition(true) })
         case .backward:
-            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionCrossDissolve, completion: { _ in transitionContext.completeTransition(true) })
+            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromRight, completion: { _ in transitionContext.completeTransition(true) })
         }
-        
-
     }
 }
