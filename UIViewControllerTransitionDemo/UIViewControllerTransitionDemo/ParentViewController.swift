@@ -17,11 +17,11 @@ class ParentViewController: UIViewController {
         super.viewDidLoad()
 
 //        willMove(toParentViewController: self)
-        addChildViewController(VC)
+        addChild(VC)
 //        didMove(toParentViewController: self)
 //        
 //        willMove(toParentViewController: self)
-        addChildViewController(toVC)
+        addChild(toVC)
 //        didMove(toParentViewController: self)
         
         view.addSubview(VC.view)
@@ -45,7 +45,7 @@ extension UIViewController {
         }
         
         // 判断是否都属于 parentVC 的子控制器
-        if parentVC.childViewControllers.contains(fromVC) == false || parentVC.childViewControllers.contains(toVC) == false {
+        if parentVC.children.contains(fromVC) == false || parentVC.children.contains(toVC) == false {
             return
         }
         
@@ -66,7 +66,7 @@ extension UIViewController {
          */
         
         // 转场
-        parentVC.transition(from: fromVC, to: toVC, duration: 0.5, options: UIViewAnimationOptions.transitionCurlUp, animations: {
+        parentVC.transition(from: fromVC, to: toVC, duration: 0.5, options: UIView.AnimationOptions.transitionCurlUp, animations: {
             
         }) { (_) in
             

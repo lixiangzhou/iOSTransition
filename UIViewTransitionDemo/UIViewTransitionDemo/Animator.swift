@@ -31,7 +31,7 @@ extension Animator: UIViewControllerTransitioningDelegate {
 
 // MARK: - push代理 UINavigationControllerDelegate
 extension Animator: UINavigationControllerDelegate {
-    @objc(navigationController:animationControllerForOperation:fromViewController:toViewController:) func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    @objc(navigationController:animationControllerForOperation:fromViewController:toViewController:) func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         style = (operation == .push) ? .forward : .backward
         return self
     }
@@ -70,9 +70,9 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         
         switch style {
         case .forward:
-            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromLeft, completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
+            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIView.AnimationOptions.transitionCrossDissolve, completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
         case .backward:
-            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIViewAnimationOptions.transitionFlipFromRight, completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
+            UIView.transition(from: fromVC.view, to: toVC.view, duration: transitionDuration(using: transitionContext), options: UIView.AnimationOptions.transitionCrossDissolve, completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
         }
     }
 }
